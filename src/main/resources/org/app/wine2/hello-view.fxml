@@ -1,0 +1,22 @@
+<!--<?import javafx.scene.control.TableColumn?>-->
+<!--<?import javafx.scene.control.TableView?>-->
+<!--<?import javafx.scene.layout.VBox?>-->
+<!--<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.app.wine2.WineController">-->
+<!--  <TableView fx:id="wineTableView" prefWidth="800" prefHeight="600">-->
+<!--    <columns>-->
+<!--      <TableColumn fx:id="fixedAcidityColumn" text="Fixed Acidity" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="volatileAcidityColumn" text="Volatile Acidity" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="citricAcidColumn" text="Citric Acid" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="residualSugarColumn" text="Residual Sugar" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="chloridesColumn" text="Chlorides" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="freeSulfurDioxideColumn" text="Free Sulfur Dioxide" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="totalSulfurDioxideColumn" text="Total Sulfur Dioxide" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="densityColumn" text="Density" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="pHColumn" text="pH" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="sulphatesColumn" text="Sulphates" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="alcoholColumn" text="Alcohol" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="qualityColumn" text="Quality" prefWidth="100"/>-->
+<!--      <TableColumn fx:id="colorColumn" text="Color" prefWidth="100"/>-->
+<!--    </columns>-->
+<!--  </TableView>-->
+<!--</VBox>-->

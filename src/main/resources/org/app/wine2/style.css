@@ -1,0 +1,50 @@
+.root {
+    -fx-background-image: url("photo.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+/* הגדרת רקע חלון */
+.root {
+    -fx-background-color: #f5f5f5; /* צבע רקע בהיר */
+    -fx-font-family: "Segoe UI", Arial, sans-serif; /* גופן נעים לקריאה */
+}
+
+/* עיצוב ה-VBox */
+.vbox {
+    -fx-alignment: center;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+/* עיצוב כפתור */
+.button {
+    -fx-background-color: #4CAF50; /* צבע רקע של הכפתור */
+    -fx-text-fill: white; /* צבע הטקסט בלבן */
+    -fx-font-size: 14px; /* גודל הגופן */
+    -fx-font-weight: bold; /* משקל הגופן (מודגש) */
+    -fx-padding: 10px 20px; /* רווח פנימי בתוך הכפתור */
+    -fx-border-radius: 5px; /* פינות מעוגלות */
+    -fx-border-color: #4CAF50; /* צבע גבול */
+    -fx-border-width: 2px; /* עובי הגבול */
+    -fx-cursor: hand; /* סמן היד כשעכבר על הכפתור */
+}
+
+/* עיצוב כפתור במעבר על הכפתור (hover) */
+.button:hover {
+    -fx-background-color: #45a049; /* שינוי צבע הרקע */
+}
+
+/* עיצוב כפתור בעת לחיצה */
+.button:pressed {
+    -fx-background-color: #388e3c; /* צבע רקע שונה בעת לחיצה */
+}
+
+/* עיצוב כותרת או טקסט (אם יש צורך) */
+.label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-margin-bottom: 15px;
+}

@@ -14,6 +14,7 @@ public class WineApp extends Application {
     private StackPane wineTableViewStackPane;
     private VBox buttonsVbox;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // טעינת כל הרכבים מתוך FXML

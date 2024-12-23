@@ -1,58 +1,104 @@
 package org.app.wine2;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Wine {
-    private Double fixedAcidity;
-    private Double volatileAcidity;
-    private Double citricAcid;
-    private Double residualSugar;
-    private Double chlorides;
-    private Double freeSulfurDioxide;
-    private Double totalSulfurDioxide;
-    private Double density;
-    private Double pH;
-    private Double sulphates;
-    private Double alcohol;
-    private String quality;  // تغيير النوع إلى String
-    private String color;
+    private final DoubleProperty fixedAcidity = new SimpleDoubleProperty();
+    private final DoubleProperty volatileAcidity = new SimpleDoubleProperty();
+    private final DoubleProperty citricAcid = new SimpleDoubleProperty();
+    private final DoubleProperty residualSugar = new SimpleDoubleProperty();
+    private final DoubleProperty chlorides = new SimpleDoubleProperty();
+    private final DoubleProperty freeSulfurDioxide = new SimpleDoubleProperty();
+    private final DoubleProperty totalSulfurDioxide = new SimpleDoubleProperty();
+    private final DoubleProperty density = new SimpleDoubleProperty();
+    private final DoubleProperty pH = new SimpleDoubleProperty();
+    private final DoubleProperty sulphates = new SimpleDoubleProperty();
+    private final DoubleProperty alcohol = new SimpleDoubleProperty();
+    private final StringProperty quality = new SimpleStringProperty();
+    private final StringProperty color = new SimpleStringProperty();
 
     // Constructor
-    public Wine(Double fixedAcidity, Double volatileAcidity, Double citricAcid, Double residualSugar,
-                Double chlorides, Double freeSulfurDioxide, Double totalSulfurDioxide, Double density,
-                Double pH, Double sulphates, Double alcohol, String quality, String color) {
-        this.fixedAcidity = fixedAcidity;
-        this.volatileAcidity = volatileAcidity;
-        this.citricAcid = citricAcid;
-        this.residualSugar = residualSugar;
-        this.chlorides = chlorides;
-        this.freeSulfurDioxide = freeSulfurDioxide;
-        this.totalSulfurDioxide = totalSulfurDioxide;
-        this.density = density;
-        this.pH = pH;
-        this.sulphates = sulphates;
-        this.alcohol = alcohol;
-        this.quality = quality;  // الاحتفاظ بنوعية نصية للـ quality
-        this.color = color;
+    public Wine(double fixedAcidity, double volatileAcidity, double citricAcid, double residualSugar,
+                double chlorides, double freeSulfurDioxide, double totalSulfurDioxide, double density,
+                double pH, double sulphates, double alcohol, String quality, String color) {
+        this.fixedAcidity.set(fixedAcidity);
+        this.volatileAcidity.set(volatileAcidity);
+        this.citricAcid.set(citricAcid);
+        this.residualSugar.set(residualSugar);
+        this.chlorides.set(chlorides);
+        this.freeSulfurDioxide.set(freeSulfurDioxide);
+        this.totalSulfurDioxide.set(totalSulfurDioxide);
+        this.density.set(density);
+        this.pH.set(pH);
+        this.sulphates.set(sulphates);
+        this.alcohol.set(alcohol);
+        this.quality.set(quality);
+        this.color.set(color);
     }
 
+    // Getter and Setter Methods for all properties
+    public DoubleProperty fixedAcidityProperty() {
+        return fixedAcidity;
+    }
 
+    public DoubleProperty volatileAcidityProperty() {
+        return volatileAcidity;
+    }
 
-    // Getters
-    public Double getFixedAcidity() { return fixedAcidity; }
-    public Double getVolatileAcidity() { return volatileAcidity; }
-    public Double getCitricAcid() { return citricAcid; }
-    public Double getResidualSugar() { return residualSugar; }
-    public Double getChlorides() { return chlorides; }
-    public Double getFreeSulfurDioxide() { return freeSulfurDioxide; }
-    public Double getTotalSulfurDioxide() { return totalSulfurDioxide; }
-    public Double getDensity() { return density; }
-    public Double getpH() { return pH; }
-    public Double getSulphates() { return sulphates; }
-    public Double getAlcohol() { return alcohol; }
-    public String getQuality() { return quality; }  // getter الخاص بـ quality
-    public String getColor() { return color; }
+    public DoubleProperty citricAcidProperty() {
+        return citricAcid;
+    }
 
-    public
-    double getProperty(String property) {
-        return 0;
+    public DoubleProperty residualSugarProperty() {
+        return residualSugar;
+    }
+
+    public DoubleProperty chloridesProperty() {
+        return chlorides;
+    }
+
+    public DoubleProperty freeSulfurDioxideProperty() {
+        return freeSulfurDioxide;
+    }
+
+    public DoubleProperty totalSulfurDioxideProperty() {
+        return totalSulfurDioxide;
+    }
+
+    public DoubleProperty densityProperty() {
+        return density;
+    }
+
+    public DoubleProperty pHProperty() {
+        return pH;
+    }
+
+    public DoubleProperty sulphatesProperty() {
+        return sulphates;
+    }
+
+    public DoubleProperty alcoholProperty() {
+        return alcohol;
+    }
+
+    public StringProperty qualityProperty() {
+        return quality;
+    }
+
+    public StringProperty colorProperty() {
+        return color;
+    }
+
+    // Getter for color as String
+    public String getColor() {
+        return color.get();
+    }
+
+    // Setter for color
+    public void setColor(String color) {
+        this.color.set(color);
     }
 }

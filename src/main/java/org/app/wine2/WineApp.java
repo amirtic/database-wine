@@ -1,139 +1,74 @@
 package org.app.wine2;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.app.Server.Queries;
-import org.app.Server.SQLDatabaseConnection;
-
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
+import javafx.scene.control.Button;
 
 public class WineApp extends Application {
 
+    private StackPane resultTextAreaStackPane;
+    private StackPane wineTableViewStackPane;
+    private VBox buttonsVbox;
+
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws Exception {
+        // טעינת כל הרכבים מתוך FXML
+        resultTextAreaStackPane = FXMLLoader.load(getClass().getResource("/ResultTextArea.fxml"));
+        wineTableViewStackPane = FXMLLoader.load(getClass().getResource("/WineTableView.fxml"));
+        buttonsVbox = FXMLLoader.load(getClass().getResource("/Buttons.fxml"));
 
+        // הגדרת הכפתורים
+        Button showDataButton = new Button("Show Data");
+        showDataButton.setOnAction(e -> showData(primaryStage));
 
+        VBox initialView = new VBox(20);
+        initialView.setStyle("-fx-alignment: center;");
+        initialView.getChildren().addAll(buttonsVbox, showDataButton);
 
-
-
-        SQLDatabaseConnection dbConnection = new SQLDatabaseConnection();
-        Connection conn = dbConnection.connect();
-
-        Queries queries = new Queries();
-
-        // VBox to hold the buttons
-        VBox vbox = new VBox();
-        vbox.setSpacing(10);
-
-        // Create buttons for each query
-        Button fetchDataBtn = new Button("Fetch Data");
-        Button fetchPHBtn = new Button("Fetch pH");
-        Button counterRedWhiteBtn = new Button("Counter of Red and White Wines");
-        Button phSmallerThanSixBtn = new Button("pH Smaller Than 6");
-        Button selectMaxMinBtn = new Button("Select Max/Min Value");
-        Button showData = new Button("Show Data");
-
-        // Button actions
-        fetchDataBtn.setOnAction(e -> queries.fetchData(conn));
-        fetchPHBtn.setOnAction(e -> queries.fetchpH(conn));
-        counterRedWhiteBtn.setOnAction(e -> queries.counterOfRedWhite(conn));
-        phSmallerThanSixBtn.setOnAction(e -> queries.phSmallerThanSix(conn));
-        selectMaxMinBtn.setOnAction(e -> queries.selectMaxMinValue(conn));
-        showData.setOnAction(e -> queries.showData());
-
-        // Add buttons to VBox
-        vbox.getChildren().addAll(showData, fetchDataBtn, counterRedWhiteBtn, phSmallerThanSixBtn, selectMaxMinBtn, fetchPHBtn);
-
-        // TableView setup
-        TableView<Wine> wineTableView = new TableView<>();
-        TableColumn<Wine, Double> fixedAcidityColumn = createDoubleColumn("Fixed Acidity", "fixedAcidity");
-        TableColumn<Wine, Double> volatileAcidityColumn = createDoubleColumn("Volatile Acidity", "volatileAcidity");
-        TableColumn<Wine, Double> citricAcidColumn = createDoubleColumn("Citric Acid", "citricAcid");
-        TableColumn<Wine, Double> residualSugarColumn = createDoubleColumn("Residual Sugar", "residualSugar");
-        TableColumn<Wine, Double> chloridesColumn = createDoubleColumn("Chlorides", "chlorides");
-        TableColumn<Wine, Double> freeSulfurDioxideColumn = createDoubleColumn("Free Sulfur Dioxide", "freeSulfurDioxide");
-        TableColumn<Wine, Double> totalSulfurDioxideColumn = createDoubleColumn("Total Sulfur Dioxide", "totalSulfurDioxide");
-        TableColumn<Wine, Double> densityColumn = createDoubleColumn("Density", "density");
-        TableColumn<Wine, Double> pHColumn = createDoubleColumn("pH", "pH");
-        TableColumn<Wine, Double> sulphatesColumn = createDoubleColumn("Sulphates", "sulphates");
-        TableColumn<Wine, Double> alcoholColumn = createDoubleColumn("Alcohol", "alcohol");
-
-        // Define columns for String properties
-        TableColumn<Wine, String> qualityColumn = new TableColumn<>("Quality");
-        qualityColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getQuality()));
-
-        TableColumn<Wine, String> colorColumn = new TableColumn<>("Color");
-        colorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getColor()));
-        // Add all columns to the TableView
-
-        // Add all columns to the TableView
-        wineTableView.getColumns().addAll(
-                fixedAcidityColumn, volatileAcidityColumn, citricAcidColumn,
-                residualSugarColumn, chloridesColumn, freeSulfurDioxideColumn,
-                totalSulfurDioxideColumn, densityColumn, pHColumn, sulphatesColumn,
-                alcoholColumn, qualityColumn, colorColumn
-        );
-
-        // Add TableView to VBox
-        vbox.getChildren().add(wineTableView);
-
-
-
-
-        // Create scene and set stage
-        Scene scene = new Scene(vbox, 1100, 800);
-
-
-//        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-
+        // הגדרת הסצנה
+        Scene scene = new Scene(initialView, 1100, 800);
         primaryStage.setTitle("Wine Database");
         primaryStage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+
         primaryStage.show();
-
-
-
     }
 
+    // מתודה להצגת הטבלה בלחיצה על הכפתור
+    private void showData(Stage stage) {
+        // إعداد زر "Back"
+        Button backButton = new Button("Back");
+        backButton.setOnAction(e -> goBack(stage));
 
+        // הגדרת הממשק השני עם הטבלה ,וכפתור "Back"
+        VBox secondView = new VBox(20);
+        secondView.setStyle("-fx-alignment: center;");
+        secondView.getChildren().addAll(wineTableViewStackPane, backButton);
 
+        // עדכון מחדש של הסצנה כדי להציג את הטבלה,וכפתור  "Back"
+        Scene scene = new Scene(secondView, 1100, 800);
+        stage.setScene(scene);
+        stage.show();
+    }
 
+    // מתודה לחזרה למסך הראשי
+    private void goBack(Stage stage) {
+        // החזרת המסך הראשון
+        VBox initialView = new VBox(20);
+        initialView.setStyle("-fx-alignment: center;");
+        Button showDataButton = new Button("Show Data");
+        showDataButton.setOnAction(e -> showData(stage));
+        initialView.getChildren().addAll(buttonsVbox, showDataButton);
 
-    // Helper method to create Double columns
-    private TableColumn<Wine, Double> createDoubleColumn(String name, String getterMethod) {
-        TableColumn<Wine, Double> column = new TableColumn<>(name);
-        column.setCellValueFactory(cellData -> {
-            try {
-                // استدعاء دالة الـ getter باستخدام Reflection
-                Object result = cellData.getValue().getClass()
-                        .getMethod(getterMethod)
-                        .invoke(cellData.getValue());
+        Scene scene = new Scene(initialView, 1100, 800);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
-                if (result instanceof Double) {
-                    return new SimpleDoubleProperty((Double) result).asObject();
-                } else {
-                    // في حالة أن القيمة التي أرجعها الـ getter ليست من نوع Double
-                    System.err.println("Expected a Double value from " + getterMethod);
-                    return null;
-                }
-            } catch (NoSuchMethodException e) {
-                System.err.println("No such method: " + getterMethod);
-                e.printStackTrace();
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                System.err.println("Error invoking method: " + getterMethod);
-                e.printStackTrace();
-            }
-            return null;
-        });
-        return column;
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {

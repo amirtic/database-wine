@@ -1,0 +1,29 @@
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.app.wine2.WineTableViewController">
+    <VBox>
+
+        <TableView fx:id="wineTableView" prefWidth="800" prefHeight="600">
+            <columns>
+                <TableColumn fx:id="fixedAcidityColumn" text="Fixed Acidity"/>
+                <TableColumn fx:id="volatileAcidityColumn" text="Volatile Acidity"/>
+                <TableColumn fx:id="citricAcidColumn" text="Citric Acid"/>
+                <TableColumn fx:id="residualSugarColumn" text="Residual Sugar"/>
+                <TableColumn fx:id="chloridesColumn" text="Chlorides"/>
+                <TableColumn fx:id="freeSulfurDioxideColumn" text="Free Sulfur Dioxide"/>
+                <TableColumn fx:id="totalSulfurDioxideColumn" text="Total Sulfur Dioxide"/>
+                <TableColumn fx:id="densityColumn" text="Density"/>
+                <TableColumn fx:id="pHColumn" text="pH"/>
+                <TableColumn fx:id="sulphatesColumn" text="Sulphates"/>
+                <TableColumn fx:id="alcoholColumn" text="Alcohol"/>
+                <TableColumn fx:id="qualityColumn" text="Quality"/>
+                <TableColumn fx:id="colorColumn" text="Color"/>
+            </columns>
+        </TableView>
+    </VBox>
+</StackPane>

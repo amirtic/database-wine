@@ -1,0 +1,8 @@
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.app.wine2.ResultTextAreaController">
+    <TextArea fx:id="resultTextArea" prefHeight="200" prefWidth="800" editable="false"/>
+
+</StackPane>

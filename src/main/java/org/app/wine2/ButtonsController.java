@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.app.Server.Queries;
@@ -26,10 +27,13 @@ public class ButtonsController {
     private ComboBox<String> colorComboBox;
 
     @FXML
-    private void handleFetchData() {
-        String result = queries.showData(connection);
-        showResultsInNewWindow(result);
-    }
+    private TextField pHValueField;
+
+//    @FXML
+//    private void handleFetchData() {
+//        String result = queries.showData(connection);
+//        showResultsInNewWindow(result);
+//    }
 
 
     @FXML
@@ -55,10 +59,28 @@ public class ButtonsController {
     }
 
     @FXML
-    private void handlePHSmallerThan6() {
-        String result = queries.phSmallerThanSix(connection);
-        showResultsInNewWindow(result);
+    private void handlePHSmallerThan() {
+        // الحصول على القيمة المدخلة من قبل المستخدم
+        String pHInput = pHValueField.getText();
+
+        if (pHInput != null && !pHInput.isEmpty()) {
+            try {
+                double pHValue = Double.parseDouble(pHInput);
+                String result = queries.phSmallerThan(connection, pHValue);
+                showResultsInNewWindow(result);
+            } catch (NumberFormatException e) {
+                showResultsInNewWindow("Invalid pH value. Please enter a valid number.");
+            }
+        } else {
+            showResultsInNewWindow("Please enter a pH value.");
+        }
     }
+
+//    @FXML
+//    private void handlePHSmallerThan6() {
+//        String result = queries.phSmallerThanSix(connection);
+//        showResultsInNewWindow(result);
+//    }
 
     @FXML
     private void handleSelectMaxMin() {

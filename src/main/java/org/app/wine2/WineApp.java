@@ -19,7 +19,7 @@ public class WineApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         // טעינת כל הרכבים מתוך FXML
         resultTextAreaStackPane = FXMLLoader.load(getClass().getResource("/ResultTextArea.fxml"));
-        wineTableViewStackPane = FXMLLoader.load(getClass().getResource("/WineTableView.fxml"));
+//        wineTableViewStackPane = FXMLLoader.load(getClass().getResource("/WineTableView.fxml"));
         buttonsVbox = FXMLLoader.load(getClass().getResource("/Buttons.fxml"));
 
         // הגדרת הכפתורים
@@ -28,7 +28,7 @@ public class WineApp extends Application {
 
         VBox initialView = new VBox(20);
         initialView.setStyle("-fx-alignment: center;");
-        initialView.getChildren().addAll(buttonsVbox, showDataButton);
+        initialView.getChildren().addAll(buttonsVbox);
 
         // הגדרת הסצנה
         Scene scene = new Scene(initialView, 1100, 800);

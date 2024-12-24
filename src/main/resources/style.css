@@ -20,7 +20,7 @@
 
 /* עיצוב כפתור */
 .button {
-    -fx-background-color: linear-gradient(to bottom, #ff7f50, #ff6347);
+    -fx-background-color: linear-gradient(to bottom, #622a2a, #ff0808);
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -32,7 +32,7 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom, #ff6347, #ff4500);
+    -fx-background-color: linear-gradient(to bottom, #ff0808, #622a2a);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 10, 0, 0, 4);
 }
 
@@ -48,4 +48,8 @@
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
     -fx-margin-bottom: 15px;
+}
+
+.Border {
+-fx-border-color: #ffff
 }

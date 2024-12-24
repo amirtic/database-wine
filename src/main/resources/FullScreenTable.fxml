@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="org.app.wine2.FullScreenTableController">
+    <children>
+        <TableView fx:id="wineTableView" layoutY="50.0" layoutX="10.0" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            <columns>
+                <TableColumn fx:id="fixedAcidityColumn" text="Fixed Acidity"/>
+                <TableColumn fx:id="volatileAcidityColumn" text="Volatile Acidity"/>
+                <TableColumn fx:id="citricAcidColumn" text="Citric Acid"/>
+                <TableColumn fx:id="residualSugarColumn" text="Residual Sugar"/>
+                <TableColumn fx:id="chloridesColumn" text="Chlorides"/>
+                <TableColumn fx:id="freeSulfurDioxideColumn" text="Free Sulfur Dioxide"/>
+                <TableColumn fx:id="totalSulfurDioxideColumn" text="Total Sulfur Dioxide"/>
+                <TableColumn fx:id="densityColumn" text="Density"/>
+                <TableColumn fx:id="pHColumn" text="pH"/>
+                <TableColumn fx:id="sulphatesColumn" text="Sulphates"/>
+                <TableColumn fx:id="alcoholColumn" text="Alcohol"/>
+                <TableColumn fx:id="qualityColumn" text="Quality"/>
+                <TableColumn fx:id="colorColumn" text="Color"/>
+            </columns>
+        </TableView>
+        <Button text="Back" layoutX="10.0" layoutY="10.0" onAction="#handleBack"/>
+    </children>
+</AnchorPane>

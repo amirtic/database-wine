@@ -190,7 +190,7 @@ public class Queries {
 
 
 
-    public String phSmallerThan(Connection connection, double pHValue) {
+    public static String phSmallerThan(Connection connection, double pHValue) {
         String query = "SELECT * FROM wine WHERE pH < ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setDouble(1, pHValue); // تعيين قيمة pH المدخلة في الاستعلام

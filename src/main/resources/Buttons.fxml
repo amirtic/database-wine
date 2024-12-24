@@ -7,11 +7,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="562.0" prefWidth="1167.0" spacing="10" style="-fx-alignment: center;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.app.wine2.ButtonsController">
+<VBox alignment="CENTER" prefHeight="562.0" prefWidth="1167.0" spacing="10" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.app.wine2.ButtonsController">
 
-
-    <Button onAction="#handleFetchData" prefHeight="50" prefWidth="180" text="Show Data" />
-    <ComboBox fx:id="colorComboBox" prefHeight="44.0" prefWidth="182.0">
+    <Button onAction="#handleFetchData" prefHeight="52.0" prefWidth="182.0" text="Show Data" />
+    <ComboBox fx:id="colorComboBox" prefHeight="44.0" prefWidth="182.0" promptText="Chose Color" style="-fx-background-color: #ffff;" styleClass="Border">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Red" />
@@ -19,7 +18,7 @@
             </FXCollections>
         </items>
     </ComboBox>
-    <Button onAction="#handleFetchpH" prefHeight="52.0" prefWidth="182.0" text="Fetch pH" styleClass="blackBorder" />
+    <Button onAction="#handleFetchpH" prefHeight="52.0" prefWidth="182.0" text="Fetch pH" />
     <Button onAction="#handleCounterRedWhite" prefHeight="44.0" prefWidth="182.0" text="Counter Red/White" />
     <Button onAction="#handleSelectMaxMin" prefHeight="44.0" prefWidth="182.0" text="Select Max/Min" />
 

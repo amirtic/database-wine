@@ -1,3 +1,4 @@
+
 package org.app.wine2;
 
 import javafx.collections.ObservableList;
@@ -11,13 +12,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller for displaying wine data in a full-screen table view.
+ * This class manages the table view, binds data to columns, and provides navigation functionality.
+ */
 public class FullScreenTableController {
 
     @FXML private TableView<Wine> wineTableView;
-    @FXML
-    private TableColumn<Wine, Integer> idColumn;
-    @FXML
-    private TableColumn<Wine, String> hireDateColumn;
+    @FXML private TableColumn<Wine, Integer> idColumn;
+    @FXML private TableColumn<Wine, String> hireDateColumn;
     @FXML private TableColumn<Wine, Double> fixedAcidityColumn;
     @FXML private TableColumn<Wine, Double> volatileAcidityColumn;
     @FXML private TableColumn<Wine, Double> citricAcidColumn;
@@ -33,12 +36,14 @@ public class FullScreenTableController {
     @FXML private TableColumn<Wine, String> colorColumn;
 
     private Stage stage;
+
+    /**
+     * Initializes the table view by binding table columns to corresponding {@link Wine} properties.
+     */
     @FXML
     public void initialize() {
-        // Bind columns to Wine properties
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         hireDateColumn.setCellValueFactory(cellData -> cellData.getValue().hireDate());
-
         fixedAcidityColumn.setCellValueFactory(cellData -> cellData.getValue().fixedAcidityProperty().asObject());
         volatileAcidityColumn.setCellValueFactory(cellData -> cellData.getValue().volatileAcidityProperty().asObject());
         citricAcidColumn.setCellValueFactory(cellData -> cellData.getValue().citricAcidProperty().asObject());
@@ -53,15 +58,29 @@ public class FullScreenTableController {
         qualityColumn.setCellValueFactory(cellData -> cellData.getValue().qualityProperty());
         colorColumn.setCellValueFactory(cellData -> cellData.getValue().colorProperty());
     }
+
+    /**
+     * Sets the stage reference for this controller.
+     *
+     * @param stage The stage to be set.
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Populates the table view with wine data.
+     *
+     * @param wineList The list of {@link Wine} objects to be displayed in the table.
+     */
     public void setTableData(ObservableList<Wine> wineList) {
         wineTableView.setItems(wineList);
     }
 
-
+    /**
+     * Handles the back button click event.
+     * Closes the current window and opens the main screen.
+     */
     @FXML
     private void handleBack() {
         Stage stage = (Stage) wineTableView.getScene().getWindow();
@@ -76,14 +95,15 @@ public class FullScreenTableController {
             mainStage.setScene(scene);
             mainStage.setTitle("Main Screen");
             mainStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 }
+
+
+
+
+
+
 

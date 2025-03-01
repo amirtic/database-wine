@@ -1,11 +1,14 @@
 
+
 package org.app.wine2;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,72 +20,76 @@ public class WineApp extends Application {
     private Stage primaryStage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
-        
         this.primaryStage = primaryStage;
 
-        // יצירת המסך הראשוני עם ברוך הבא
+        // יצירת מסך פתיחה
         VBox welcomeVBox = createWelcomeScreen();
 
-        // יצירת סצנה עם המסך הראשוני
+        // יצירת סצנה ראשונית
         Scene welcomeScene = new Scene(welcomeVBox, 1100, 800);
         primaryStage.setTitle("Welcome");
         primaryStage.setScene(welcomeScene);
         primaryStage.show();
 
-        // הוספת אפקט תצוגה (Fade In)
+        // אפקט כניסה
         applyFadeInEffect(welcomeVBox);
 
-        // מעבר למסך הראשי אחרי 3 שניות
+        // מעבר אוטומטי למסך הראשי
         navigateToMainScreenAfterDelay();
     }
 
-    // יצירת המסך הראשוני
+    /**
+     * יצירת מסך הפתיחה עם טקסט "ברוך הבא".
+     */
     private VBox createWelcomeScreen() {
         VBox welcomeVBox = new VBox();
-        welcomeVBox.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-background-color: #282c34;"); // עיצוב רקע כהה
+        welcomeVBox.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-background-color: #282c34;");
 
-        Label welcomeLabel = new Label("Welcome to  Wine Application");
-        welcomeLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"); // עיצוב טקסט
+        Label welcomeLabel = new Label("Welcome to Wine Application");
+        welcomeLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
 
         welcomeVBox.getChildren().add(welcomeLabel);
         return welcomeVBox;
     }
 
-    // הוספת אפקט תצוגה (Fade In) על תווית הברוך הבא
+    /**
+     * הוספת אפקט מעבר (Fade In) למסך הפתיחה.
+     */
     private void applyFadeInEffect(VBox welcomeVBox) {
-        Label welcomeLabel = (Label) welcomeVBox.getChildren().get(0); // גישה לתווית הברוך הבא
+        Label welcomeLabel = (Label) welcomeVBox.getChildren().get(0);
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(2), welcomeLabel);
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
         fadeIn.play();
     }
 
-    // מעבר למסך הראשי אחרי השהיית זמן
+    /**
+     * מעבר למסך הראשי אחרי 3 שניות.
+     */
     private void navigateToMainScreenAfterDelay() {
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
         pause.setOnFinished(event -> {
-            // אפקט יציאה (Fade Out)
             FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), primaryStage.getScene().getRoot());
             fadeOut.setFromValue(1.0);
             fadeOut.setToValue(0.0);
-            fadeOut.setOnFinished(e -> showMainApp());
+            fadeOut.setOnFinished(e -> Platform.runLater(this::showMainApp));
             fadeOut.play();
         });
         pause.play();
     }
 
-    // הצגת המסך הראשי לאחר יציאה מהמסך הקודם
+    /**
+     * טעינת המסך הראשי עם FXML וסטיילים.
+     */
     private void showMainApp() {
         try {
-            // טעינת ה-FXML של המסך הראשי
             buttonsVbox = FXMLLoader.load(getClass().getResource("/fxml/Buttons.fxml"));
             VBox mainVBox = new VBox(20);
-            mainVBox.setStyle("-fx-alignment: center;");
+            mainVBox.setStyle("-fx-alignment: center; -fx-padding: 20;");
             mainVBox.getChildren().add(buttonsVbox);
 
-            // הגדרת סצנה עם מסך ראשי
             Scene mainScene = new Scene(mainVBox, 1100, 800);
             primaryStage.setTitle("Wine Database");
             primaryStage.setScene(mainScene);
@@ -90,14 +97,21 @@ public class WineApp extends Application {
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            showErrorDialog("Error loading the FXML file"); // הצגת הודעת שגיאה במידה ויש בעיה
+            showErrorDialog("Error loading the FXML file: " + e.getMessage());
         }
     }
 
-    // הצגת הודעת שגיאה במידה ויש בעיה
+    /**
+     * הצגת הודעת שגיאה אם מתרחשת בעיה בטעינת ה־FXML.
+     */
     private void showErrorDialog(String message) {
-        // פונקציה להציג הודעת שגיאה (למשל, דיאלוג עם כפתור סגירה)
-        System.err.println(message);
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("An error occurred");
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
     }
 
     public static void main(String[] args) {

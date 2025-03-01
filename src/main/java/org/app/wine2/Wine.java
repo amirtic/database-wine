@@ -1,11 +1,10 @@
 package org.app.wine2;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 public class Wine {
+    private final IntegerProperty id = new SimpleIntegerProperty();
+    private final StringProperty hireDate = new SimpleStringProperty();
     private final DoubleProperty fixedAcidity = new SimpleDoubleProperty();
     private final DoubleProperty volatileAcidity = new SimpleDoubleProperty();
     private final DoubleProperty citricAcid = new SimpleDoubleProperty();
@@ -23,7 +22,9 @@ public class Wine {
     // Constructor
     public Wine(double fixedAcidity, double volatileAcidity, double citricAcid, double residualSugar,
                 double chlorides, double freeSulfurDioxide, double totalSulfurDioxide, double density,
-                double pH, double sulphates, double alcohol, String quality, String color) {
+                double pH, double sulphates, double alcohol, String quality, String color , int id , String hireDate) {
+        this.id.set(id);
+        this.hireDate.set(hireDate);
         this.fixedAcidity.set(fixedAcidity);
         this.volatileAcidity.set(volatileAcidity);
         this.citricAcid.set(citricAcid);
@@ -38,6 +39,20 @@ public class Wine {
         this.quality.set(quality);
         this.color.set(color);
     }
+
+
+
+
+    public IntegerProperty idProperty(){
+        return id;
+    }
+
+    public StringProperty hireDate(){
+        return hireDate;
+    }
+
+
+
 
     // Getter and Setter Methods for all properties
     public DoubleProperty fixedAcidityProperty() {
@@ -92,13 +107,4 @@ public class Wine {
         return color;
     }
 
-    // Getter for color as String
-    public String getColor() {
-        return color.get();
-    }
-
-    // Setter for color
-    public void setColor(String color) {
-        this.color.set(color);
-    }
 }

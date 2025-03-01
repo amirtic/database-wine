@@ -25,6 +25,11 @@
                 <TableColumn fx:id="alcoholColumn" text="Alcohol"/>
                 <TableColumn fx:id="qualityColumn" text="Quality"/>
                 <TableColumn fx:id="colorColumn" text="Color"/>
+                <TableColumn fx:id="idColumn" text="id"/>
+                <TableColumn fx:id="hireDateColumn" text="hire_date"/>
+
+
+
             </columns>
         </TableView>
         <Button text="Back" layoutX="10.0" layoutY="10.0" onAction="#handleBack"/>
